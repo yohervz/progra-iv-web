@@ -1,0 +1,15 @@
+[project]
+name = "yoher-tech-courses"
+version = "1.0.0"
+description = "Aplicativo GUI en Flet con POO para Cursos de Inteligencia Artificial, Cloudflare y Cloud Computing - IUT Antonio José de Sucre."
+authors = [{ name = "Yoher Alejandro Vazquez Salinas", email = "info@yohervazquez.com" }]
+dependencies = [
+    "flet>=1.0.4",
+    "flask>=3.1.0",
+]
+readme = "README.md"
+requires-python = ">=3.10"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"

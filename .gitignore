@@ -1,0 +1,90 @@
+# ==============================================================================
+# Git Ignore - Proyecto Python con uv y Flet / Flask
+# Instituto Universitario de Tecnología "Antonio José de Sucre"
+# ==============================================================================
+
+# Entornos virtuales (uv, venv, virtualenv)
+.venv/
+venv/
+ENV/
+env/
+env.bak/
+venv.bak/
+
+# Byte-compiled / archivos de caché de Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Distribución y empaquetado
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Caché de pruebas y cobertura de código
+.pytest_cache/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+htmlcov/
+.tox/
+.nox/
+
+# Archivos generados por Flet
+.flet/
+flet_build/
+
+# Variables de entorno y credenciales locales
+.env
+.env.local
+.env.*.local
+*.env
+
+# Archivos de configuración de IDEs y Editores
+.idea/
+.vscode/
+*.sublime-workspace
+*.sublime-project
+*.swp
+*.swo
+*~
+
+# Archivos del Sistema Operativo macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+.Spotlight-V100
+.Trashes
+
+# Archivos del Sistema Operativo Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Logs y depuración
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*

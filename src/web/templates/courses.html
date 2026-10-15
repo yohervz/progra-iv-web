@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+
+{% block title %}Catálogo de Cursos | Yoher Vazquez{% endblock %}
+
+{% block content %}
+<div class="bg-dark text-white py-5" style="background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);">
+  <div class="container py-3">
+    <span class="badge bg-primary px-3 py-2 rounded-pill uppercase mb-2">FORMACIÓN ESPECIALIZADA</span>
+    <h1 class="display-5 fw-bold">Catálogo de Cursos Disponibles</h1>
+    <p class="lead text-secondary mb-0">
+      Programas intensivos diseñados y guiados por el Ing. Yoher Vazquez con enfoque práctico en Inteligencia Artificial, Cloudflare y Cloud Computing.
+    </p>
+  </div>
+</div>
+
+<div class="container py-5">
+  <div class="row g-4">
+    {% for course in courses %}
+    <div class="col-md-6 col-lg-4">
+      <div class="course-card">
+        <div class="course-cover-wrap">
+          <img src="{{ course.cover_image }}" alt="{{ course.title }}" loading="lazy">
+          <span class="course-badge {% if 'Artificial' in course.category %}badge-ia{% elif 'Cloudflare' in course.title or 'Edge' in course.category %}badge-cf{% else %}badge-cc{% endif %}">
+            {{ course.badge }}
+          </span>
+        </div>
+        <div class="course-body">
+          <div class="course-category">{{ course.category }}</div>
+          <h3 class="course-title">{{ course.title }}</h3>
+          <p class="course-desc">{{ course.short_description }}</p>
+
+          <div class="course-meta">
+            <span><i class="bi bi-clock me-1 text-primary"></i> {{ course.duration }}</span>
+            <span><i class="bi bi-bar-chart-steps me-1 text-primary"></i> {{ course.level }}</span>
+          </div>
+
+          <div class="mb-3">
+            <small class="fw-bold text-secondary text-uppercase d-block mb-1" style="font-size: 0.75rem;">
+              Requisitos previos:
+            </small>
+            <ul class="list-unstyled mb-0 small text-muted">
+              {% for req in course.requirements[:2] %}
+              <li class="d-flex align-items-center gap-1 mb-1 text-truncate">
+                <i class="bi bi-check2 text-success"></i> <span>{{ req }}</span>
+              </li>
+              {% endfor %}
+            </ul>
+          </div>
+
+          <div class="course-footer mt-auto">
+            <div>
+              <small class="text-muted d-block" style="font-size: 0.75rem;">Inversión</small>
+              <div class="course-price">{{ course.formatted_price }}</div>
+            </div>
+            <div class="d-flex gap-2">
+              <a href="{{ url_for('courses.course_detail', slug=course.slug) }}" class="btn btn-sm btn-outline-secondary">
+                Ver Detalles
+              </a>
+              <a href="{{ url_for('courses.enroll_view', slug=course.slug) }}" class="btn btn-sm btn-primary-custom">
+                Inscribirme
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,240 @@
+{% extends "base.html" %}
+
+{% block title %}Yoher Vazquez | Cursos Profesionales de Inteligencia Artificial & Cloud{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero-section">
+  <div class="container position-relative">
+    <div class="row align-items-center g-5">
+      <div class="col-lg-7">
+        <div class="hero-badge">
+          <i class="bi bi-stars text-warning"></i>
+          <span>Formación de Vanguardia para Ingenieros y Desarrolladores</span>
+        </div>
+        <h1 class="hero-title mb-4">
+          Aprende <span class="text-gradient">Inteligencia Artificial</span>, Edge Computing y Cloud con Enfoque Real
+        </h1>
+        <p class="hero-lead mb-4">
+          Cursos estructurados con rigor académico e impacto práctico. Aprende de la mano de <strong>Yoher Vazquez</strong>, Ingeniero en Informática y Docente Universitario, dominando herramientas de última generación con proyectos reales y aplicados.
+        </p>
+        <div class="d-flex flex-wrap gap-3">
+          <a href="#cursos" class="btn btn-primary-custom px-4 py-3">
+            <i class="bi bi-mortarboard-fill me-2"></i> Ver Cursos Disponibles
+          </a>
+          <a href="{{ url_for('courses.about') }}" class="btn btn-outline-light px-4 py-3 border-secondary">
+            <i class="bi bi-person-circle me-2"></i> Conoce al Docente
+          </a>
+        </div>
+      </div>
+
+      <div class="col-lg-5">
+        <div class="hero-feature-card">
+          <div class="d-flex align-items-center gap-3 mb-4">
+            <div class="rounded-circle p-2 bg-primary bg-opacity-25 text-info fs-3">
+              <i class="bi bi-award-fill"></i>
+            </div>
+            <div>
+              <h5 class="fw-bold mb-0 text-white">Metodología Universitaria</h5>
+              <small class="text-slate-400 text-secondary">Aprende haciendo con proyectos reales</small>
+            </div>
+          </div>
+          <ul class="list-unstyled d-flex flex-column gap-3 mb-4">
+            <li class="d-flex align-items-center gap-3">
+              <i class="bi bi-check-circle-fill text-info"></i>
+              <span>Proyectos reales de IA con Python y LLMs</span>
+            </li>
+            <li class="d-flex align-items-center gap-3">
+              <i class="bi bi-check-circle-fill text-info"></i>
+              <span>Seguridad, CDN y Edge Computing con Cloudflare</span>
+            </li>
+            <li class="d-flex align-items-center gap-3">
+              <i class="bi bi-check-circle-fill text-info"></i>
+              <span>Arquitectura Cloud Computing escalable (AWS / GCP)</span>
+            </li>
+            <li class="d-flex align-items-center gap-3">
+              <i class="bi bi-check-circle-fill text-info"></i>
+              <span>Certificado de aprobación y soporte personalizado</span>
+            </li>
+          </ul>
+          <div class="p-3 rounded-3 bg-white bg-opacity-10 text-center">
+            <span class="text-white-50 small">Cupos limitados por cohorte para garantizar mentoría directa</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Stats Ribbon -->
+<div class="container">
+  <div class="stats-ribbon">
+    <div class="row text-center g-3">
+      <div class="col-6 col-md-3 stat-item border-end">
+        <h3>+1,200</h3>
+        <p>Alumnos Capacitados</p>
+      </div>
+      <div class="col-6 col-md-3 stat-item border-end">
+        <h3>10+ Años</h3>
+        <p>Experiencia Universitaria</p>
+      </div>
+      <div class="col-6 col-md-3 stat-item border-end">
+        <h3>100%</h3>
+        <p>Práctico y Aplicado</p>
+      </div>
+      <div class="col-6 col-md-3 stat-item">
+        <h3>4.9 / 5</h3>
+        <p>Satisfacción de Estudiantes</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Featured Courses Section -->
+<section class="py-5 mt-4" id="cursos">
+  <div class="container py-4">
+    <div class="text-center mb-5">
+      <span class="badge bg-primary bg-opacity-10 text-primary fw-bold px-3 py-2 rounded-pill uppercase mb-2">
+        CATÁLOGO OFICIAL
+      </span>
+      <h2 class="fw-bold display-6 mt-2">Cursos Especializados Disponibles</h2>
+      <p class="text-muted mx-auto" style="max-width: 650px;">
+        Selecciona un programa para acceder al temario detallado, requisitos previos y formulario de inscripción directa.
+      </p>
+    </div>
+
+    <div class="row g-4">
+      {% for course in courses %}
+      <div class="col-md-6 col-lg-4">
+        <div class="course-card">
+          <div class="course-cover-wrap">
+            <img src="{{ course.cover_image }}" alt="{{ course.title }}" loading="lazy">
+            <span class="course-badge {% if 'Artificial' in course.category %}badge-ia{% elif 'Cloudflare' in course.title or 'Edge' in course.category %}badge-cf{% else %}badge-cc{% endif %}">
+              {{ course.badge }}
+            </span>
+          </div>
+          <div class="course-body">
+            <div class="course-category">{{ course.category }}</div>
+            <h3 class="course-title">{{ course.title }}</h3>
+            <p class="course-desc">{{ course.short_description }}</p>
+            
+            <div class="course-meta">
+              <span><i class="bi bi-clock me-1 text-primary"></i> {{ course.duration }}</span>
+              <span><i class="bi bi-bar-chart-steps me-1 text-primary"></i> {{ course.level }}</span>
+            </div>
+
+            <!-- Preview of requirements -->
+            <div class="mb-3">
+              <small class="fw-bold text-secondary text-uppercase d-block mb-1" style="font-size: 0.75rem;">
+                Requisitos clave:
+              </small>
+              <ul class="list-unstyled mb-0 small text-muted">
+                {% for req in course.requirements[:2] %}
+                <li class="d-flex align-items-center gap-1 mb-1 text-truncate">
+                  <i class="bi bi-check2 text-success"></i> <span>{{ req }}</span>
+                </li>
+                {% endfor %}
+              </ul>
+            </div>
+
+            <div class="course-footer mt-auto">
+              <div>
+                <small class="text-muted d-block" style="font-size: 0.75rem;">Inversión</small>
+                <div class="course-price">{{ course.formatted_price }}</div>
+              </div>
+              <div class="d-flex gap-2">
+                <a href="{{ url_for('courses.course_detail', slug=course.slug) }}" class="btn btn-sm btn-outline-secondary">
+                  Detalles
+                </a>
+                <a href="{{ url_for('courses.enroll_view', slug=course.slug) }}" class="btn btn-sm btn-primary-custom">
+                  Inscribirse
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- About Yoher Vazquez Section -->
+<section class="py-5 bg-white border-top border-bottom" id="docente">
+  <div class="container py-4">
+    <div class="row align-items-center g-5">
+      <div class="col-lg-5 text-center">
+        <div class="position-relative d-inline-block">
+          <img src="{{ instructor.avatar_url }}" alt="{{ instructor.name }}" class="instructor-avatar shadow-lg" style="width: 220px; height: 220px;">
+          <div class="position-absolute bottom-0 start-50 translate-middle-x bg-dark text-white px-3 py-1 rounded-pill small fw-bold shadow">
+            Docente Titular
+          </div>
+        </div>
+        <div class="mt-4">
+          <h4 class="fw-bold mb-1">{{ instructor.name }}</h4>
+          <p class="text-primary fw-semibold mb-3">{{ instructor.title }}</p>
+          <div class="d-flex justify-content-center gap-2">
+            <a href="mailto:info@yohervazquez.com" class="btn btn-sm btn-outline-dark">
+              <i class="bi bi-envelope-fill me-1"></i> Contactar
+            </a>
+            <a href="{{ url_for('courses.about') }}" class="btn btn-sm btn-primary">
+              <i class="bi bi-file-earmark-person me-1"></i> Ver Perfil Completo
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-7">
+        <span class="badge bg-primary bg-opacity-10 text-primary fw-bold px-3 py-2 rounded-pill uppercase mb-2">
+          SOBRE EL INSTRUCTOR
+        </span>
+        <h2 class="fw-bold display-6 mt-2 mb-3">
+          Experiencia Académica y Profesional a tu Servicio
+        </h2>
+        <p class="text-secondary fs-5 mb-4">
+          {{ instructor.bio }}
+        </p>
+
+        <div class="bg-light p-4 rounded-3 border-start border-4 border-primary mb-4">
+          <h6 class="fw-bold text-dark mb-1"><i class="bi bi-quote fs-4 text-primary align-middle"></i> Filosofía de Enseñanza</h6>
+          <p class="text-muted mb-0 italic">"{{ instructor.teaching_philosophy }}"</p>
+        </div>
+
+        <div class="row g-3">
+          <div class="col-sm-6">
+            <h6 class="fw-bold text-dark mb-2">Áreas de Especialidad:</h6>
+            <div class="d-flex flex-wrap">
+              {% for spec in instructor.specialties %}
+                <span class="skill-tag"><i class="bi bi-check2 text-primary me-1"></i> {{ spec }}</span>
+              {% endfor %}
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <h6 class="fw-bold text-dark mb-2">Impacto en la Comunidad:</h6>
+            <ul class="list-unstyled small text-muted d-flex flex-column gap-2 mb-0">
+              <li><i class="bi bi-patch-check-fill text-success me-2"></i> {{ instructor.stats.alumnos_capacitados }} profesionales y estudiantes formados.</li>
+              <li><i class="bi bi-patch-check-fill text-success me-2"></i> {{ instructor.stats.cursos_dictados }} programas y talleres especializados.</li>
+              <li><i class="bi bi-patch-check-fill text-success me-2"></i> {{ instructor.stats.satisfaccion }} de valoración positiva en encuestas docentes.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Call to Action Section -->
+<section class="py-5" style="background: linear-gradient(135deg, #1e1b4b 0%, #0f172a 100%);">
+  <div class="container py-4 text-center text-white">
+    <div class="mx-auto" style="max-width: 700px;">
+      <h2 class="display-6 fw-bold mb-3">¿Listo para elevar tu carrera técnica?</h2>
+      <p class="text-slate-300 fs-5 mb-4 text-secondary">
+        Inscríbete hoy mismo en uno de nuestros cursos especializados en Inteligencia Artificial, Cloudflare o Cloud Computing.
+      </p>
+      <a href="#cursos" class="btn btn-primary-custom px-5 py-3 fs-5">
+        <i class="bi bi-pencil-square me-2"></i> Inscribirme en un Curso
+      </a>
+    </div>
+  </div>
+</section>
+{% endblock %}

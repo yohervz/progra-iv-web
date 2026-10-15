@@ -1,0 +1,156 @@
+{% extends "base.html" %}
+
+{% block title %}Inscripción a {{ course.title }} | Yoher Vazquez{% endblock %}
+
+{% block content %}
+<div class="py-4 bg-dark text-white" style="background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);">
+  <div class="container py-2">
+    <a href="{{ url_for('courses.course_detail', slug=course.slug) }}" class="text-secondary small text-decoration-none">
+      <i class="bi bi-arrow-left me-1"></i> Volver al detalle del curso
+    </a>
+    <h1 class="display-6 fw-bold mt-2">Formulario de Inscripción</h1>
+    <p class="text-secondary mb-0">Curso seleccionado: <strong class="text-white">{{ course.title }}</strong></p>
+  </div>
+</div>
+
+<div class="container py-5">
+  <div class="row g-5">
+    <!-- Course Summary Card -->
+    <div class="col-lg-5">
+      <div class="card border rounded-4 shadow-sm overflow-hidden bg-white">
+        <img src="{{ course.cover_image }}" alt="{{ course.title }}" style="height: 180px; object-fit: cover;">
+        <div class="card-body p-4">
+          <span class="badge {% if 'Artificial' in course.category %}badge-ia{% elif 'Cloudflare' in course.title or 'Edge' in course.category %}badge-cf{% else %}badge-cc{% endif %} mb-2">
+            {{ course.category }}
+          </span>
+          <h4 class="fw-bold mb-2">{{ course.title }}</h4>
+          <p class="text-muted small mb-3">{{ course.short_description }}</p>
+
+          <div class="d-flex justify-content-between align-items-center py-2 border-top border-bottom my-3">
+            <span class="text-muted">Inversión:</span>
+            <span class="fs-4 fw-bold text-dark">{{ course.formatted_price }}</span>
+          </div>
+
+          <div class="small text-secondary mb-3">
+            <div class="mb-1"><i class="bi bi-clock me-1 text-primary"></i> <strong>Duración:</strong> {{ course.duration }}</div>
+            <div class="mb-1"><i class="bi bi-bar-chart me-1 text-primary"></i> <strong>Nivel:</strong> {{ course.level }}</div>
+            <div><i class="bi bi-person me-1 text-primary"></i> <strong>Instructor:</strong> {{ course.instructor_name }}</div>
+          </div>
+
+          <h6 class="fw-bold mt-4 mb-2 small text-uppercase text-secondary">Recordatorio de requisitos:</h6>
+          <ul class="list-unstyled small text-muted mb-0">
+            {% for req in course.requirements %}
+            <li class="d-flex align-items-start gap-2 mb-2">
+              <i class="bi bi-check2 text-success mt-1"></i>
+              <span>{{ req }}</span>
+            </li>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Registration Form -->
+    <div class="col-lg-7">
+      <div class="enroll-form-card">
+        <div class="d-flex align-items-center gap-3 mb-4">
+          <div class="p-3 bg-primary bg-opacity-10 text-primary rounded-circle fs-4">
+            <i class="bi bi-pencil-square"></i>
+          </div>
+          <div>
+            <h3 class="fw-bold mb-0">Datos del Estudiante</h3>
+            <p class="text-muted small mb-0">Completa el formulario para reservar tu cupo en esta cohorte.</p>
+          </div>
+        </div>
+
+        {% if errors %}
+          <div class="alert alert-danger py-2 small" role="alert">
+            <i class="bi bi-exclamation-triangle-fill me-2"></i> Por favor corrige los errores señalados abajo.
+          </div>
+        {% endif %}
+
+        <form action="{{ url_for('courses.process_enrollment', slug=course.slug) }}" method="POST" novalidate>
+          <div class="mb-3">
+            <label for="student_name" class="form-label">Nombre Completo *</label>
+            <input 
+              type="text" 
+              class="form-control {% if errors.student_name %}is-invalid{% endif %}" 
+              id="student_name" 
+              name="student_name" 
+              placeholder="Ej. Carlos Mendoza" 
+              value="{{ form_data.student_name if form_data else '' }}" 
+              required
+            >
+            {% if errors.student_name %}
+              <div class="invalid-feedback">{{ errors.student_name }}</div>
+            {% endif %}
+          </div>
+
+          <div class="row g-3 mb-3">
+            <div class="col-md-6">
+              <label for="student_email" class="form-label">Correo Electrónico *</label>
+              <input 
+                type="email" 
+                class="form-control {% if errors.student_email %}is-invalid{% endif %}" 
+                id="student_email" 
+                name="student_email" 
+                placeholder="tunombre@correo.com" 
+                value="{{ form_data.student_email if form_data else '' }}" 
+                required
+              >
+              {% if errors.student_email %}
+                <div class="invalid-feedback">{{ errors.student_email }}</div>
+              {% endif %}
+            </div>
+
+            <div class="col-md-6">
+              <label for="student_phone" class="form-label">Teléfono / WhatsApp *</label>
+              <input 
+                type="tel" 
+                class="form-control {% if errors.student_phone %}is-invalid{% endif %}" 
+                id="student_phone" 
+                name="student_phone" 
+                placeholder="+58 412 1234567" 
+                value="{{ form_data.student_phone if form_data else '' }}" 
+                required
+              >
+              {% if errors.student_phone %}
+                <div class="invalid-feedback">{{ errors.student_phone }}</div>
+              {% endif %}
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label for="experience_level" class="form-label">Nivel de Experiencia en el Área</label>
+            <select class="form-select" id="experience_level" name="experience_level">
+              <option value="Principiante" {% if form_data.experience_level == 'Principiante' %}selected{% endif %}>Principiante (Conozco lo básico o estoy empezando)</option>
+              <option value="Intermedio" {% if form_data.experience_level == 'Intermedio' %}selected{% endif %}>Intermedio (He desarrollado proyectos o scripts)</option>
+              <option value="Avanzado" {% if form_data.experience_level == 'Avanzado' %}selected{% endif %}>Avanzado (Profesional en el área buscando especialización)</option>
+            </select>
+          </div>
+
+          <div class="mb-4">
+            <label for="comments" class="form-label">Expectativas o Preguntas (Opcional)</label>
+            <textarea 
+              class="form-control" 
+              id="comments" 
+              name="comments" 
+              rows="3" 
+              placeholder="¿Qué objetivos profesionales deseas alcanzar con este curso?"
+            >{{ form_data.comments if form_data else '' }}</textarea>
+          </div>
+
+          <div class="p-3 bg-light rounded-3 mb-4 small text-secondary border">
+            <i class="bi bi-shield-lock-fill text-primary me-1"></i>
+            Tus datos serán tratados de manera confidencial y utilizados exclusivamente para enviarte la información de acceso y cronograma del curso.
+          </div>
+
+          <button type="submit" class="btn btn-primary-custom w-100 py-3 fs-5">
+            <i class="bi bi-check2-circle me-2"></i> Confirmar Inscripción al Curso
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

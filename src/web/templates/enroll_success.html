@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+
+{% block title %}¡Inscripción Exitosa! | Yoher Vazquez{% endblock %}
+
+{% block content %}
+<div class="container py-5 my-4">
+  <div class="row justify-content-center">
+    <div class="col-lg-8">
+      <div class="card border-0 shadow-lg rounded-4 overflow-hidden text-center bg-white p-4 p-md-5">
+        <div class="mb-4">
+          <div class="d-inline-flex p-3 rounded-circle bg-success bg-opacity-10 text-success fs-1">
+            <i class="bi bi-check-circle-fill"></i>
+          </div>
+        </div>
+
+        <span class="badge bg-success-subtle text-success fw-bold px-3 py-2 rounded-pill d-inline-block mx-auto mb-3">
+          INSCRIPCIÓN REGISTRADA CORRECTAMENTE
+        </span>
+
+        <h1 class="display-6 fw-bold text-dark mb-2">¡Felicitaciones, {{ enrollment.student_name }}!</h1>
+        <p class="text-secondary fs-5 mb-4">
+          Tu postulación al curso <strong>{{ course.title }}</strong> ha sido recibida con éxito.
+        </p>
+
+        <!-- Summary box -->
+        <div class="bg-light p-4 rounded-4 border text-start mb-4">
+          <div class="row g-3">
+            <div class="col-sm-6">
+              <small class="text-muted text-uppercase fw-bold" style="font-size: 0.75rem;">Código de Inscripción</small>
+              <div class="d-flex align-items-center gap-2 mt-1">
+                <span class="fs-5 fw-bold font-monospace text-primary" id="enrollmentCodeText">{{ enrollment.id }}</span>
+                <button class="btn btn-sm btn-outline-secondary py-0 px-2" id="copyEnrollmentBtn" title="Copiar código">
+                  <i class="bi bi-clipboard"></i>
+                </button>
+              </div>
+            </div>
+
+            <div class="col-sm-6">
+              <small class="text-muted text-uppercase fw-bold" style="font-size: 0.75rem;">Inversión del Curso</small>
+              <div class="fs-5 fw-bold text-dark mt-1">{{ course.formatted_price }}</div>
+            </div>
+
+            <div class="col-sm-6">
+              <small class="text-muted text-uppercase fw-bold" style="font-size: 0.75rem;">Correo de Notificación</small>
+              <div class="text-dark fw-semibold mt-1">{{ enrollment.student_email }}</div>
+            </div>
+
+            <div class="col-sm-6">
+              <small class="text-muted text-uppercase fw-bold" style="font-size: 0.75rem;">Teléfono de Contacto</small>
+              <div class="text-dark fw-semibold mt-1">{{ enrollment.student_phone }}</div>
+            </div>
+
+            <div class="col-sm-6">
+              <small class="text-muted text-uppercase fw-bold" style="font-size: 0.75rem;">Duración</small>
+              <div class="text-dark fw-semibold mt-1">{{ course.duration }}</div>
+            </div>
+
+            <div class="col-sm-6">
+              <small class="text-muted text-uppercase fw-bold" style="font-size: 0.75rem;">Docente Titular</small>
+              <div class="text-dark fw-semibold mt-1">{{ course.instructor_name }}</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Next steps -->
+        <div class="text-start mb-4">
+          <h5 class="fw-bold text-dark mb-3"><i class="bi bi-signpost-split text-primary me-2"></i> Próximos Pasos</h5>
+          <ol class="text-secondary small d-flex flex-column gap-2 mb-0">
+            <li><strong>Revisión de tu bandeja de entrada:</strong> En breve recibirás un correo electrónico con los detalles del inicio de clases y enlaces de acceso.</li>
+            <li><strong>Grupo exclusivo de coordinación:</strong> El Ing. Yoher Vazquez te contactará por WhatsApp para integrarte a la cohorte activa.</li>
+            <li><strong>Preparación de entorno:</strong> Te recomendamos revisar los requisitos técnicos del curso antes de la primera sesión en vivo.</li>
+          </ol>
+        </div>
+
+        <div class="d-flex flex-wrap justify-content-center gap-3">
+          <a href="{{ url_for('courses.course_detail', slug=course.slug) }}" class="btn btn-outline-secondary px-4 py-2">
+            <i class="bi bi-file-text me-1"></i> Ver Temario del Curso
+          </a>
+          <a href="{{ url_for('courses.courses_list') }}" class="btn btn-primary-custom px-4 py-2">
+            <i class="bi bi-grid me-1"></i> Explorar Otros Cursos
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

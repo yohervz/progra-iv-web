@@ -1,0 +1,119 @@
+{% extends "base.html" %}
+
+{% block title %}{{ course.title }} | Yoher Vazquez{% endblock %}
+
+{% block content %}
+<!-- Course Header -->
+<div class="py-5 text-white" style="background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 60%, #0f172a 100%);">
+  <div class="container py-3">
+    <div class="row align-items-center g-4">
+      <div class="col-lg-8">
+        <div class="d-flex align-items-center gap-2 mb-3">
+          <span class="badge {% if 'Artificial' in course.category %}badge-ia{% elif 'Cloudflare' in course.title or 'Edge' in course.category %}badge-cf{% else %}badge-cc{% endif %} px-3 py-2 rounded-pill">
+            {{ course.badge }}
+          </span>
+          <span class="text-info fw-semibold">{{ course.category }}</span>
+        </div>
+        <h1 class="display-6 fw-bold mb-3">{{ course.title }}</h1>
+        <p class="fs-5 text-secondary mb-4">{{ course.subtitle }}</p>
+        
+        <div class="d-flex flex-wrap gap-4 text-secondary small">
+          <div><i class="bi bi-clock-history text-info me-1"></i> Duración: <strong class="text-white">{{ course.duration }}</strong></div>
+          <div><i class="bi bi-bar-chart text-info me-1"></i> Nivel: <strong class="text-white">{{ course.level }}</strong></div>
+          <div><i class="bi bi-person text-info me-1"></i> Instructor: <strong class="text-white">{{ course.instructor_name }}</strong></div>
+        </div>
+      </div>
+      
+      <div class="col-lg-4">
+        <div class="card shadow-lg border-0 rounded-4 overflow-hidden">
+          <img src="{{ course.cover_image }}" class="card-img-top" alt="{{ course.title }}" style="height: 220px; object-fit: cover;">
+          <div class="card-body p-4 text-center bg-white text-dark">
+            <span class="text-muted small text-uppercase fw-bold">Inversión del programa</span>
+            <div class="display-6 fw-bold text-dark my-2">{{ course.formatted_price }}</div>
+            <a href="{{ url_for('courses.enroll_view', slug=course.slug) }}" class="btn btn-primary-custom w-100 py-3 fs-5 mb-2">
+              <i class="bi bi-pencil-square me-2"></i> Inscribirme Ahora
+            </a>
+            <small class="text-muted d-block">Acceso a clases, código fuente y certificación</small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container py-5">
+  <div class="row g-5">
+    <div class="col-lg-8">
+      <!-- Course Description -->
+      <div class="bg-white p-4 p-md-5 rounded-4 border mb-4 shadow-sm">
+        <h3 class="fw-bold mb-3"><i class="bi bi-info-circle text-primary me-2"></i> Acerca del Curso</h3>
+        <p class="text-secondary fs-5 lh-lg mb-4">{{ course.full_description }}</p>
+
+        <!-- Requirements -->
+        <h4 class="fw-bold mt-4 mb-3 text-dark"><i class="bi bi-check-all text-success me-2"></i> Requisitos Previos</h4>
+        <p class="text-muted mb-3">Para aprovechar al máximo este programa de formación, se recomienda cumplir con los siguientes requisitos:</p>
+        <div class="bg-light p-3 p-md-4 rounded-3 border">
+          {% for req in course.requirements %}
+          <div class="req-item">
+            <i class="bi bi-check-circle-fill req-icon"></i>
+            <span class="text-secondary">{{ req }}</span>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+
+      <!-- Syllabus / Modules -->
+      <div class="bg-white p-4 p-md-5 rounded-4 border mb-4 shadow-sm">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+          <h3 class="fw-bold mb-0"><i class="bi bi-journal-code text-primary me-2"></i> Plan de Estudios / Temario</h3>
+          <span class="badge bg-secondary-subtle text-secondary px-3 py-2 rounded-pill">{{ course.syllabus|length }} Módulos</span>
+        </div>
+
+        {% for module in course.syllabus %}
+        <div class="syllabus-item">
+          <div class="syllabus-header">
+            <i class="bi bi-bookmark-fill text-primary"></i>
+            <span>{{ module.module }}</span>
+          </div>
+          <div class="syllabus-body">
+            <ul>
+              {% for topic in module.topics %}
+              <li>{{ topic }}</li>
+              {% endfor %}
+            </ul>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+
+    <!-- Right Sidebar -->
+    <div class="col-lg-4">
+      <div class="position-sticky" style="top: 90px;">
+        <!-- Instructor Card -->
+        <div class="card border rounded-4 p-4 shadow-sm mb-4 bg-white">
+          <div class="text-center mb-3">
+            <img src="{{ instructor.avatar_url }}" alt="{{ instructor.name }}" class="instructor-avatar mb-2" style="width: 100px; height: 100px;">
+            <h5 class="fw-bold mb-0">{{ instructor.name }}</h5>
+            <small class="text-primary fw-semibold">{{ instructor.title }}</small>
+          </div>
+          <p class="small text-secondary mb-3">{{ instructor.bio }}</p>
+          <a href="{{ url_for('courses.about') }}" class="btn btn-outline-primary btn-sm w-100">
+            Conocer más del Docente
+          </a>
+        </div>
+
+        <!-- Tags card -->
+        <div class="card border rounded-4 p-4 shadow-sm bg-white">
+          <h6 class="fw-bold mb-3">Tecnologías & Conceptos:</h6>
+          <div class="d-flex flex-wrap gap-1">
+            {% for tag in course.tags %}
+            <span class="badge bg-light text-dark border">{{ tag }}</span>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

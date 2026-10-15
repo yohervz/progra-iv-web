@@ -1,0 +1,125 @@
+[
+  {
+    "id": "course-ia-01",
+    "slug": "inteligencia-artificial-y-llms",
+    "title": "Inteligencia Artificial Aplicada y Modelos de Lenguaje (LLMs)",
+    "subtitle": "Domina el desarrollo con LLMs, Agentes Autónomos, RAG y Machine Learning práctico en Python.",
+    "category": "Inteligencia Artificial",
+    "level": "Intermedio a Avanzado",
+    "duration": "8 Semanas (48 horas lectivas)",
+    "price": 149.99,
+    "currency": "USD",
+    "badge": "Más Popular",
+    "cover_image": "https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=1200&q=80",
+    "instructor_name": "Yoher Vazquez",
+    "short_description": "Aprende a integrar y construir soluciones inteligentes utilizando Inteligencia Artificial Generativa, arquitecturas RAG, agentes y frameworks modernos en Python.",
+    "full_description": "Este curso integral está diseñado para llevarte de las bases del Machine Learning e Inteligencia Artificial moderna hasta la creación de arquitecturas avanzadas impulsadas por LLMs. Aprenderás a orquestar agentes inteligentes, construir canalizaciones RAG (Retrieval-Augmented Generation) con bases de datos vectoriales, optimizar prompts y desplegar aplicaciones de IA en producción con buenas prácticas de ingeniería de software.",
+    "requirements": [
+      "Conocimientos fundamentales de programación en Python.",
+      "Comprensión básica de estructuras de datos y APIs REST.",
+      "Computador con conexión a Internet y capacidad para ejecutar entornos virtuales.",
+      "Ganas de experimentar con tecnologías emergentes y automatización cognitiva."
+    ],
+    "syllabus": [
+      {
+        "module": "Módulo 1: Fundamentos de IA y Machine Learning Práctico",
+        "topics": ["Evolución de la IA clásica a la IA generativa", "Ecosistema Python para IA (NumPy, Pandas, PyTorch)", "Evaluación de modelos y métricas clave"]
+      },
+      {
+        "module": "Módulo 2: Modelos Masivos de Lenguaje (LLMs) y Prompt Engineering",
+        "topics": ["Arquitectura Transformer simplificada", "Técnicas avanzadas de prompting (Few-Shot, CoT, ReAct)", "Integración de APIs de OpenAI, Anthropic y modelos Open Source con HuggingFace"]
+      },
+      {
+        "module": "Módulo 3: Retrieval-Augmented Generation (RAG) y Embeddings",
+        "topics": ["Generación de embeddings y búsqueda semántica", "Bases de datos vectoriales (ChromaDB, Pinecone, Qdrant)", "Construcción de un buscador documental inteligente"]
+      },
+      {
+        "module": "Módulo 4: Agentes Inteligentes y Despliegue en Producción",
+        "topics": ["Frameworks de agentes (LangChain, LangGraph, LlamaIndex)", "Herramientas y llamadas a funciones (Function Calling)", "Monitorización, costos, seguridad y despliegue como microservicio"]
+      }
+    ],
+    "tags": ["Python", "LLMs", "RAG", "LangChain", "Machine Learning", "OpenAI"]
+  },
+  {
+    "id": "course-cf-02",
+    "slug": "cloudflare-edge-computing-seguridad",
+    "title": "Cloudflare & Edge Computing: Seguridad Web y Serverless",
+    "subtitle": "Optimiza el rendimiento, blinda aplicaciones web y ejecuta código serverless en la red global de Cloudflare.",
+    "category": "Edge & Seguridad Web",
+    "level": "Intermedio",
+    "duration": "6 Semanas (36 horas lectivas)",
+    "price": 119.99,
+    "currency": "USD",
+    "badge": "Tendencia",
+    "cover_image": "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1200&q=80",
+    "instructor_name": "Yoher Vazquez",
+    "short_description": "Domina la plataforma de Cloudflare desde la gestión de DNS, proxy inverso, mitigación DDoS, WAF y SSL/TLS, hasta el desarrollo serverless con Cloudflare Workers, Pages y D1.",
+    "full_description": "Cloudflare es la columna vertebral de millones de sitios web en el mundo. En este curso aprenderás a explotar al máximo su ecosistema: configuración avanzada de DNS y CDN, reglas de almacenamiento en caché, defensa contra ataques DDoS y bots maliciosos con WAF. Además, nos sumergiremos en Edge Computing programando Cloudflare Workers, almacenamiento KV y bases de datos relacionales serverless D1 para servir APIs a milisegundos de tus usuarios.",
+    "requirements": [
+      "Conocimientos esenciales sobre redes (DNS, HTTP/HTTPS, puertos).",
+      "Experiencia básica con JavaScript / TypeScript o lenguajes web.",
+      "Tener o poder registrar un dominio propio (incluso gratuito o de prueba) para prácticas.",
+      "Familiaridad con la terminal y comandos básicos."
+    ],
+    "syllabus": [
+      {
+        "module": "Módulo 1: Fundamentos de Red, DNS y Aceleración CDN",
+        "topics": ["Cómo funciona el proxy inverso de Cloudflare", "Configuración de registros DNS y propagación", "Estrategias de caché global y Purge Cache"]
+      },
+      {
+        "module": "Módulo 2: Ciberseguridad Web, WAF y Mitigación DDoS",
+        "topics": ["Gestión de certificados SSL/TLS y HSTS", "Reglas WAF personalizadas y rate limiting", "Protección contra bots y modo 'Under Attack'"]
+      },
+      {
+        "module": "Módulo 3: Edge Computing con Cloudflare Workers",
+        "topics": ["Arquitectura V8 Isolates vs Contenedores", "Creación de Workers con Wrangler CLI", "Enrutamiento, manipulación de headers y respuestas en el Edge"]
+      },
+      {
+        "module": "Módulo 4: Persistencia y Ecosistema Moderno de Cloudflare",
+        "topics": ["Workers KV y Cloudflare D1 (SQL en el Edge)", "Almacenamiento de objetos R2 (compatible S3)", "Cloudflare Pages y despliegue CI/CD automático"]
+      }
+    ],
+    "tags": ["Cloudflare", "Workers", "Edge Computing", "WAF", "CDN", "Ciberseguridad"]
+  },
+  {
+    "id": "course-cc-03",
+    "slug": "cloud-computing-arquitectura-moderna",
+    "title": "Cloud Computing: Arquitectura y Servicios en la Nube",
+    "subtitle": "Diseña soluciones escalables, resilientes y eficientes con computación en la nube (AWS / GCP) y contenedores.",
+    "category": "Cloud Computing",
+    "level": "Principiante a Intermedio",
+    "duration": "7 Semanas (42 horas lectivas)",
+    "price": 129.99,
+    "currency": "USD",
+    "badge": "Esencial",
+    "cover_image": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1200&q=80",
+    "instructor_name": "Yoher Vazquez",
+    "short_description": "Comprende a fondo los modelos IaaS, PaaS, SaaS, arquitecturas multi-región, contenedores con Docker, balanceo de carga y gestión de costos en la nube moderna.",
+    "full_description": "El cómputo en la nube transformó radicalmente la industria del software. En este curso aprenderás los pilares del Well-Architected Framework: seguridad, confiabilidad, eficiencia de rendimiento, optimización de costos y excelencia operativa. Construirás arquitecturas distribuidas utilizando máquinas virtuales, almacenamiento en bloques y objetos, redes virtuales privadas (VPC), contenedores Docker y orquestación para desplegar proyectos reales.",
+    "requirements": [
+      "Fundamentos de sistemas operativos (Linux básico recomendado).",
+      "Conocimientos generales de arquitectura de software y clientes/servidores.",
+      "Una cuenta activa en una nube pública (AWS Free Tier o GCP Free Trial).",
+      "No se requiere experiencia previa en administración de servidores."
+    ],
+    "syllabus": [
+      {
+        "module": "Módulo 1: Principios y Modelos de Cloud Computing",
+        "topics": ["Modelos de servicio (IaaS, PaaS, SaaS, Serverless)", "Modelos de despliegue (Pública, Privada, Híbrida, Multi-Cloud)", "Regiones, Zonas de Disponibilidad y Edge Locations"]
+      },
+      {
+        "module": "Módulo 2: Cómputo, Almacenamiento y Redes Virtuales",
+        "topics": ["Aprovisionamiento de instancias de cómputo (EC2/Compute Engine)", "Almacenamiento de bloques vs objetos (S3/Cloud Storage)", "Configuración de VPCs, subredes, tablas de ruteo y Security Groups"]
+      },
+      {
+        "module": "Módulo 3: Alta Disponibilidad, Escalabilidad y Contenedores",
+        "topics": ["Balanceadores de carga (ALB) y Auto Scaling Groups", "Empaquetado de aplicaciones con Docker", "Introducción a servicios gestionados de contenedores (ECS / Cloud Run)"]
+      },
+      {
+        "module": "Módulo 4: Gobernanza, Seguridad y FinOps",
+        "topics": ["Gestión de Identidades y Accesos (IAM) con principio de menor privilegio", "Monitoreo y observabilidad (CloudWatch / Cloud Monitoring)", "Estrategias de optimización de costos (FinOps)"]
+      }
+    ],
+    "tags": ["Cloud", "AWS", "GCP", "Docker", "DevOps", "Arquitectura", "Linux"]
+  }
+]

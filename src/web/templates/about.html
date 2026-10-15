@@ -1,0 +1,119 @@
+{% extends "base.html" %}
+
+{% block title %}Sobre el Docente Yoher Vazquez | Tech Academy{% endblock %}
+
+{% block content %}
+<!-- Header -->
+<div class="py-5 text-white" style="background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #0f172a 100%);">
+  <div class="container py-3">
+    <span class="badge bg-primary px-3 py-2 rounded-pill uppercase mb-2">DOCENCIA & EXPERIENCIA PROFESIONAL</span>
+    <h1 class="display-5 fw-bold">Sobre Yoher Vazquez</h1>
+    <p class="lead text-secondary mb-0">
+      Ingeniero en Informática, Docente Universitario y Consultor Tecnológico.
+    </p>
+  </div>
+</div>
+
+<div class="container py-5">
+  <div class="row g-5 align-items-center mb-5">
+    <div class="col-lg-4 text-center">
+      <div class="card border rounded-4 p-4 shadow-sm bg-white">
+        <img src="{{ instructor.avatar_url }}" alt="{{ instructor.name }}" class="instructor-avatar mx-auto mb-3" style="width: 180px; height: 180px;">
+        <h4 class="fw-bold mb-1">{{ instructor.name }}</h4>
+        <p class="text-primary fw-semibold small mb-3">{{ instructor.title }}</p>
+        <hr class="my-3">
+        <div class="text-start small text-secondary d-flex flex-column gap-2">
+          <div><i class="bi bi-geo-alt-fill text-danger me-2"></i> Docencia Presencial y Online</div>
+          <div><i class="bi bi-mortarboard-fill text-primary me-2"></i> Formación para Ingenieros y Desarrolladores</div>
+          <div><i class="bi bi-envelope-fill text-info me-2"></i> info@yohervazquez.com</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-8">
+      <h2 class="fw-bold mb-3">Trayectoria y Propósito Educativo</h2>
+      <p class="text-secondary fs-5 mb-3">
+        ¡Hola! Soy <strong>Yoher Vazquez</strong>, Ingeniero en Informática y Docente Universitario. A lo largo de mi carrera me he dedicado con pasión tanto a la construcción de soluciones en entornos productivos como a la formación de profesionales y entusiastas de la tecnología.
+      </p>
+      <p class="text-secondary mb-4">
+        La industria actual exige dominio práctico de la <strong>Inteligencia Artificial</strong>, la aceleración y seguridad perimetral con <strong>Cloudflare</strong>, y los fundamentos de <strong>Cloud Computing</strong>. Cada curso está diseñado para brindar habilidades reales aplicables desde el primer día.
+      </p>
+
+      <div class="p-4 rounded-4 bg-light border-start border-4 border-primary mb-4">
+        <h5 class="fw-bold text-dark mb-2">Filosofía de Enseñanza</h5>
+        <p class="text-muted mb-0">
+          <em>"{{ instructor.teaching_philosophy }}"</em>
+        </p>
+      </div>
+
+      <h5 class="fw-bold mb-3">Ejes de Formación que Abordamos:</h5>
+      <div class="row g-3">
+        <div class="col-md-6">
+          <div class="p-3 bg-white border rounded-3 h-100 shadow-sm">
+            <h6 class="fw-bold text-primary mb-2"><i class="bi bi-robot me-2"></i> Inteligencia Artificial Aplicada</h6>
+            <p class="small text-muted mb-0">
+              Modelos de Lenguaje (LLMs), arquitecturas RAG, búsqueda semántica y agentes autónomos orientados a casos reales.
+            </p>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="p-3 bg-white border rounded-3 h-100 shadow-sm">
+            <h6 class="fw-bold text-warning mb-2"><i class="bi bi-shield-lock me-2"></i> Cloudflare & Edge Computing</h6>
+            <p class="small text-muted mb-0">
+              Seguridad web, aceleración CDN, WAF, mitigación de ataques y desarrollo de servicios en el Edge.
+            </p>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="p-3 bg-white border rounded-3 h-100 shadow-sm">
+            <h6 class="fw-bold text-info mb-2"><i class="bi bi-cloud-check me-2"></i> Cloud Computing</h6>
+            <p class="small text-muted mb-0">
+              Infraestructura en la nube, contenedores, alta disponibilidad y diseño de soluciones escalables.
+            </p>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="p-3 bg-white border rounded-3 h-100 shadow-sm">
+            <h6 class="fw-bold text-success mb-2"><i class="bi bi-award me-2"></i> Buenas Prácticas & Mentoría</h6>
+            <p class="small text-muted mb-0">
+              Enfoque práctico de ingeniería, acompañamiento continuo, resolución de dudas y retroalimentación directa.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Featured Courses by the Instructor -->
+  <div class="border-top pt-5">
+    <div class="text-center mb-5">
+      <h3 class="fw-bold">Cursos Dictados por Yoher Vazquez</h3>
+      <p class="text-muted">Inicia tu formación especializada en la cohorte actual.</p>
+    </div>
+
+    <div class="row g-4">
+      {% for course in courses %}
+      <div class="col-md-4">
+        <div class="card h-100 border rounded-4 overflow-hidden shadow-sm">
+          <img src="{{ course.cover_image }}" class="card-img-top" alt="{{ course.title }}" style="height: 160px; object-fit: cover;">
+          <div class="card-body p-4 d-flex flex-column">
+            <span class="badge bg-light text-dark border align-self-start mb-2">{{ course.category }}</span>
+            <h5 class="fw-bold mb-2">{{ course.title }}</h5>
+            <p class="text-muted small mb-3">{{ course.short_description }}</p>
+            <div class="mt-auto d-flex justify-content-between align-items-center pt-3 border-top">
+              <span class="fw-bold fs-5 text-dark">{{ course.formatted_price }}</span>
+              <a href="{{ url_for('courses.course_detail', slug=course.slug) }}" class="btn btn-sm btn-primary">
+                Ver Curso
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+{% endblock %}
